@@ -2,87 +2,62 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     
-    <link rel="manifest" href="manifest.json">
-
+    <!-- Configurações para funcionar como Aplicativo no Celular (PWA) -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Calculadora">
+    <meta name="mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" href="icone.png">
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            background-image: url('https://unsplash.com');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            
+            background-color: #1e1e24;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: flex-end; 
+            align-items: center;
             height: 100vh;
-            height: 100dvh; 
             margin: 0;
-            padding: 20px;
-            padding-bottom: calc(20px + env(safe-area-inset-bottom)); 
+            /* Evita zoom acidental ao tocar rápido no celular */
             touch-action: manipulation; 
             user-select: none;
-            -webkit-user-select: none;
         }
 
         .calculadora {
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px);
-            
-            padding: 24px;
-            border-radius: 32px;
-            box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.6);
-            width: 100%;
-            max-width: 360px;
-            margin: 0 auto;
-        }
-
-        /* Estilização da assinatura do desenvolvedor */
-        .creditos {
-            color: #a5a5a5;
-            font-size: 0.8rem;
-            text-align: center;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
-            font-weight: 400;
-            opacity: 0.8;
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
+            width: 85vw;
+            max-width: 320px;
         }
 
         .container-visor {
-            background-color: transparent; 
-            padding: 10px;
-            margin-bottom: 24px;
+            background-color: #000000;
+            padding: 5px 10px;
+            margin-bottom: 20px;
             text-align: right;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            height: 110px;
+            height: 90px;
+            box-sizing: border-box;
         }
 
         #expressao {
-            color: #b3b3b3;
-            font-size: 1.2rem;
-            min-height: 28px;
+            color: #a5a5a5;
+            font-size: 1.1rem;
+            min-height: 25px;
             word-wrap: break-word;
             overflow: hidden;
         }
 
         #visor-principal {
             color: #ffffff;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 300;
             margin-top: 5px;
         }
@@ -90,46 +65,38 @@
         .botoes {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
+            gap: 12px;
         }
 
         button {
-            aspect-ratio: 1; 
+            height: 65px;
             border-radius: 50%;
             border: none;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: bold;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: transparent; /* Remove o flash azul do Android */
         }
 
         button:active {
-            opacity: 0.6;
+            opacity: 0.7;
         }
 
-        .numero { background-color: rgba(255, 255, 255, 0.15); color: #ffffff; }
+        .numero { background-color: #333333; color: #ffffff; }
         .operador { background-color: #ff9f0a; color: #ffffff; }
-        .comando { background-color: rgba(255, 255, 255, 0.4); color: #000000; }
+        .comando { background-color: #a5a5a5; color: #000000; }
 
         .duplo {
             grid-column: span 2;
-            aspect-ratio: auto;
-            height: 100%;
-            border-radius: 40px;
-            justify-content: flex-start;
-            padding-left: 30px;
+            border-radius: 35px;
+            text-align: left;
+            padding-left: 25px;
         }
     </style>
 </head>
 <body>
 
     <div class="calculadora">
-        <!-- Texto de créditos adicionado no topo -->
-        <div class="creditos">Wellington Oliveira</div>
-
         <div class="container-visor">
             <div id="expressao"></div>
             <div id="visor-principal">0</div>
