@@ -1,0 +1,16 @@
+{
+  "short_name": "Calculadora",
+  "name": "Calculadora Moderna PWA",
+  "icons": [
+    {
+      "src": "https://flaticon.com",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#1e1e24",
+  "theme_color": "#1e1e24",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}
