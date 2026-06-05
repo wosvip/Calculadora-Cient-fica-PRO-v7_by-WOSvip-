@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    
+    <!-- Configurações para funcionar como Aplicativo no Celular (PWA) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Calculadora">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="https://flaticon.com">
+
+    <style>
+        body {
+            background-color: #1e1e24;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            /* Evita zoom acidental ao tocar rápido no celular */
+            touch-action: manipulation; 
+            user-select: none;
+        }
+
+        .calculadora {
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
+            width: 85vw;
+            max-width: 320px;
+        }
+
+        .container-visor {
+            background-color: #000000;
+            padding: 5px 10px;
+            margin-bottom: 20px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 90px;
+            box-sizing: border-box;
+        }
+
+        #expressao {
+            color: #a5a5a5;
+            font-size: 1.1rem;
+            min-height: 25px;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+
+        #visor-principal {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-top: 5px;
+        }
+
+        .botoes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            height: 65px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.6rem;
+            font-weight: bold;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent; /* Remove o flash azul do Android */
+        }
+
+        button:active {
+            opacity: 0.7;
+        }
+
+        .numero { background-color: #333333; color: #ffffff; }
+        .operador { background-color: #ff9f0a; color: #ffffff; }
+        .comando { background-color: #a5a5a5; color: #000000; }
+
+        .duplo {
+            grid-column: span 2;
+            border-radius: 35px;
+            text-align: left;
+            padding-left: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculadora">
+        <div class="container-visor">
+            <div id="expressao"></div>
+            <div id="visor-principal">0</div>
+        </div>
+        
+        <div class="botoes">
+            <button class="comando" onclick="limparVisor()">AC</button>
+            <button class="comando" onclick="inverterSinal()">+/-</button>
+            <button class="comando" onclick="aplicarPorcentagem()">%</button>
+            <button class="operador" onclick="inserirOperador('/')">÷</button>
+
+            <button class="numero" onclick="inserirNumero('7')">7</button>
+            <button class="numero" onclick="inserirNumero('8')">8</button>
+            <button class="numero" onclick="inserirNumero('9')">9</button>
+            <button class="operador" onclick="inserirOperador('*')">×</button>
+
+            <button class="numero" onclick="inserirNumero('4')">4</button>
+            <button class="numero" onclick="inserirNumero('5')">5</button>
+            <button class="numero" onclick="inserirNumero('6')">6</button>
+            <button class="operador" onclick="inserirOperador('-')">-</button>
+
+            <button class="numero" onclick="inserirNumero('1')">1</button>
+            <button class="numero" onclick="inserirNumero('2')">2</button>
+            <button class="numero" onclick="inserirNumero('3')">3</button>
+            <button class="operador" onclick="inserirOperador('+')">+</button>
+
+            <button class="numero duplo" onclick="inserirNumero('0')">0</button>
+            <button class="numero" onclick="inserirPonto()">.</button>
+            <button class="operador" onclick="calcularResultado()">=</button>
+        </div>
+    </div>
+
+    <script>
+        const visorPrincipal = document.getElementById('visor-principal');
+        const visorExpressao = document.getElementById('expressao');
+        let operacaoAtual = ''; 
+        let resetarVisor = false;
+
+        function atualizarExpressaoVisivel() {
+            let textoFormatado = operacaoAtual
+                .replace(/\*/g, ' × ')
+                .replace(/\//g, ' ÷ ')
+                .replace(/\+/g, ' + ')
+                .replace(/\-/g, ' - ');
+            visorExpressao.innerText = textoFormatado;
+        }
+
+        function inserirNumero(numero) {
+            if (visorPrincipal.innerText === '0' || resetarVisor) {
+                visorPrincipal.innerText = numero;
+                resetarVisor = false;
+            } else {
+                visorPrincipal.innerText += numero;
+            }
+            operacaoAtual += numero;
+            atualizarExpressaoVisivel();
+        }
+
+        function inserirOperador(operador) {
+            if (operacaoAtual === '' && visorPrincipal.innerText !== '0') {
+                operacaoAtual = visorPrincipal.innerText;
+            }
+            const ultimoChar = operacaoAtual.slice(-1);
+            if (['+', '-', '*', '/'].includes(ultimoChar)) {
+                operacaoAtual = operacaoAtual.slice(0, -1);
+            }
+            operacaoAtual += operador;
+            atualizarExpressaoVisivel();
+            resetarVisor = true;
+        }
+
+        function inserirPonto() {
+            if (resetarVisor) {
+                visorPrincipal.innerText = '0.';
+                operacaoAtual += '0.';
+                resetarVisor = false;
+                atualizarExpressaoVisivel();
+                return;
+            }
+            if (!visorPrincipal.innerText.includes('.')) {
+                visorPrincipal.innerText += '.';
+                operacaoAtual += '.';
+                atualizarExpressaoVisivel();
+            }
+        }
+
+        function limparVisor() {
+            visorPrincipal.innerText = '0';
+            visorExpressao.innerText = '';
+            operacaoAtual = '';
+            resetarVisor = false;
+        }
+
+        function inverterSinal() {
+            if (visorPrincipal.innerText !== '0') {
+                let valor = String(Number(visorPrincipal.innerText) * -1);
+                visorPrincipal.innerText = valor;
+                operacaoAtual = valor;
+                atualizarExpressaoVisivel();
+            }
+        }
+
+        function aplicarPorcentagem() {
+            if (visorPrincipal.innerText !== '0') {
+                let valor = String(Number(visorPrincipal.innerText) / 100);
+                visorPrincipal.innerText = valor;
+                operacaoAtual = valor;
+                atualizarExpressaoVisivel();
+            }
+        }
+
+        function calcularResultado() {
+            if (operacaoAtual === '') return;
+            try {
+                let resultado = eval(operacaoAtual);
+                resultado = parseFloat(resultado.toFixed(8));
+                visorPrincipal.innerText = resultado;
+                operacaoAtual = String(resultado);
+                resetarVisor = true;
+            } catch (error) {
+                visorPrincipal.innerText = 'Erro';
+                operacaoAtual = '';
+            }
+        }
+    </script>
+</body>
+</html>
