@@ -98,7 +98,7 @@ button{
   border-radius:7px;
   border:1px solid #aaa;
   color:#fff;
-  font-size:clamp(11px,3.1vw,15px);
+  font-size:clamp(14px,4vw,20px);
   font-weight:bold;
   background:linear-gradient(#33006d,#18003d);
   box-shadow:inset 0 0 0 2px #fff,0 1px 2px rgba(0,0,0,.5);
@@ -171,7 +171,12 @@ button{
 let exp="",mem=0,deg=true,h=[];
 const hist=document.getElementById("hist"),res=document.getElementById("res"),modoTxt=document.getElementById("modoTxt"),degBtn=document.getElementById("degBtn");
 
-function upd(){hist.innerText=exp||"0"}
+function upd(){
+    hist.innerHTML =
+        '<span style="font-size:42px;font-weight:bold;color:white;">' +
+        (exp || "0") +
+        '</span>';
+}
 function add(v){exp+=v;upd()}
 function func(f){exp+=f+"(";upd()}
 function clearAll(){exp="";res.innerText="0";hist.innerText="Pronto para calcular"}
