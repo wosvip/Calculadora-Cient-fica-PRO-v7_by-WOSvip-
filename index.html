@@ -58,17 +58,15 @@ body{
     margin-bottom:8px;
 }
 .hist{
-    height:70px;
-    font-size:28px !important;
-    line-height:70px;
-    overflow-x:auto;
-    overflow-y:hidden;
-    white-space:nowrap;
+    height:60px;
+    font-size:16px !important;
+    overflow-y:auto;
+    overflow-x:hidden;
+    white-space:pre-line;
     font-weight:bold;
     color:#ffffff;
     padding-left:8px;
-    -webkit-text-size-adjust:none;
-    text-size-adjust:none;
+    line-height:20px;
 }
 
 .res{
@@ -199,15 +197,39 @@ function fat(n){n=Math.floor(n);let r=1;for(let i=2;i<=n;i++)r*=i;return r}
 
 function calc(){
  try{
-  let c=exp.replace(/π/g,"Math.PI").replace(/\be\b/g,"Math.E").replace(/\^/g,"**").replace(/exp\(/g,"expf(").replace(/(\d+)!/g,"fat($1)");
-  let r=Function("return "+c)();
-  r=parseFloat(Number(r).toFixed(6));
-  res.innerText=r;
-  h.push(exp+" = "+r);
-  if(h.length>4)h.shift();
-  hist.innerText=h.join("\n");
-  exp=String(r);
- }catch(e){res.innerText="Erro"}
+  let original = exp;
+
+  let c = exp
+    .replace(/π/g,"Math.PI")
+    .replace(/\be\b/g,"Math.E")
+    .replace(/\^/g,"**")
+    .replace(/exp\(/g,"expf(")
+    .replace(/(\d+)!/g,"fat($1)");
+
+  let r = Function("return " + c)();
+
+  if(isNaN(r) || !isFinite(r)){
+    res.innerText = "Erro";
+    return;
+  }
+
+  r = parseFloat(Number(r).toFixed(6));
+
+  res.innerText = r;
+
+  h.push(original + " = " + r);
+
+  if(h.length > 3){
+    h.shift();
+  }
+
+  hist.innerText = h.join("\n");
+
+  exp = String(r);
+
+ }catch(e){
+  res.innerText = "Erro";
+ }
 }
 </script>
 </body>
