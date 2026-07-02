@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.json">
 
 <meta name="theme-color" content="#d0d0d0">
@@ -58,18 +59,25 @@ body{
 }
 .hist{
     height:70px;
-    font-size:24px;
+    font-size:28px !important;
+    line-height:70px;
     overflow-x:auto;
     overflow-y:hidden;
     white-space:nowrap;
     font-weight:bold;
+    color:#ffffff;
+    padding-left:8px;
+    -webkit-text-size-adjust:none;
+    text-size-adjust:none;
 }
 
 .res{
-    font-size:48px;
+    font-size:52px !important;
     font-weight:bold;
     text-align:center;
     margin-top:15px;
+    -webkit-text-size-adjust:none;
+    text-size-adjust:none;
 }
 .grid{
   display:grid;
@@ -120,6 +128,19 @@ button{
   .grid button,.grid .v{min-height:25px}
   .num button{min-height:32px}
 }
+@media (max-width:600px){
+
+  .hist{
+      font-size:36px !important;
+      height:80px;
+      line-height:80px;
+  }
+
+  .res{
+      font-size:62px !important;
+  }
+
+}  
 </style>
 </head>
 <body>
