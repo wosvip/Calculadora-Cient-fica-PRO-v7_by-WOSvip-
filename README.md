@@ -1,4 +1,4 @@
-# Calculadora Android PRO 6 - Somente Científica
+# Calculadora Android PRO 6 -  Científica
 
 Versão com o teclado científico sempre ativo.
 
