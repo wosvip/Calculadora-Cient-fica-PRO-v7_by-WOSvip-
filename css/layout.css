@@ -10,7 +10,10 @@ body {
   height: 100dvh;
   max-height: 100dvh;
   display: grid;
-  grid-template-rows: 44px 72px auto 1fr 16px;
+
+  /* topo | visor maior | científico | teclado principal | rodapé */
+  grid-template-rows: 44px 125px auto 1fr 16px;
+
   overflow: hidden;
   background: var(--bg);
   border: 3px solid #202228;
