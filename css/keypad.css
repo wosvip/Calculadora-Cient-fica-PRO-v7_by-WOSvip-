@@ -1,9 +1,0 @@
-.scientific{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:10px 14px 8px;background:var(--shell);border-bottom:1px solid rgba(41,50,65,.55);overflow:hidden;opacity:1}
-.scientific button{height:34px;border:0;border-radius:11px;background:var(--key);color:white;font-weight:800;font-size:14px;min-width:0}
-.mainpad{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(5,64px);gap:9px;padding:10px 14px 8px;min-height:0;align-content:start}
-.mainpad button{border:0;border-radius:15px;background:var(--key2);color:white;font-size:23px;font-weight:800;min-width:0;min-height:0}
-.mainpad .op{background:var(--op);color:#000}.mainpad .danger{color:var(--danger)}.mainpad .zero{grid-column:span 2}.mainpad .equals{box-shadow:inset 0 0 0 2px rgba(255,255,255,.85)}
-@media(min-height:820px){.mainpad{grid-template-rows:repeat(5,68px);gap:10px}}
-@media(max-height:760px){.scientific{gap:5px;padding:8px 14px 7px}.scientific button{height:29px;font-size:13px;border-radius:10px}.mainpad{grid-template-rows:repeat(5,58px);gap:8px;padding:8px 14px 7px}.mainpad button{font-size:22px;border-radius:14px}}
-@media(max-height:680px){.scientific{gap:4px;padding:6px 12px 6px}.scientific button{height:25px;font-size:12px;border-radius:9px}.mainpad{grid-template-rows:repeat(5,50px);gap:7px;padding:7px 12px 6px}.mainpad button{font-size:20px}}
-@media(max-height:620px){.scientific button{height:22px;font-size:11px}.mainpad{grid-template-rows:repeat(5,44px)}}
