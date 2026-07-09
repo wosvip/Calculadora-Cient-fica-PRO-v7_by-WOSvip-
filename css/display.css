@@ -1,7 +1,5 @@
 .display {
-  height: 78px;
-  min-height: 78px;
-  padding: 8px 14px;
+  padding: 5px 14px;
   background: #03070c;
   border-bottom: 1px solid #273142;
   display: flex;
@@ -12,8 +10,8 @@
 }
 
 .history {
-  height: 18px;
-  font-size: 12px;
+  height: 16px;
+  font-size: 10px;
   color: #7db5ff;
   white-space: nowrap;
   overflow: hidden;
@@ -21,22 +19,10 @@
 }
 
 .expr {
-  font-size: clamp(34px, 8vw, 48px);
+  font-size: clamp(30px, 8vw, 42px);
   color: white;
-  line-height: 1.1;
+  line-height: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-@media (max-height: 760px) {
-  .display {
-    height: 66px;
-    min-height: 66px;
-    padding: 6px 14px;
-  }
-
-  .expr {
-    font-size: clamp(30px, 7vw, 42px);
-  }
 }
