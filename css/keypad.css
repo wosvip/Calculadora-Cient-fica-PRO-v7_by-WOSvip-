@@ -3,23 +3,36 @@ button {
   cursor: pointer;
   user-select: none;
   border: none;
+  transition: transform .05s ease, box-shadow .05s ease;
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: none !important;
 }
 
 .scientific {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 4px;
-  padding: 6px 10px;
-  background: #080c13;
+  padding: 5px 8px;
 }
 
 .scientific button {
-  height: clamp(24px, 3.4vh, 30px);
-  border-radius: 8px;
-  background: #3a4355;
-  color: white;
-  font-size: clamp(10px, 1.7vh, 12px);
+  height: clamp(23px, 3.3vh, 29px);
+  border-radius: 6px;
+  background: linear-gradient(180deg, #eeeeee, var(--btn-scientific));
+  color: var(--text-dark);
+  font-size: clamp(10px, 1.6vh, 12px);
   font-weight: 800;
+  box-shadow: 0 2px 0 #7d7d7d, inset 0 1px 0 #ffffff;
+}
+
+.scientific button[data-action^="m"],
+.scientific button[data-action="mr"],
+.scientific button[data-action="mc"] {
+  background: linear-gradient(180deg, #aaa6ff, var(--btn-memory));
+  color: white;
 }
 
 .mainpad {
@@ -28,32 +41,41 @@ button {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 7px;
-  padding: 6px 10px 4px;
+  padding: 7px 9px 4px;
 }
 
 .mainpad button {
   min-height: 0;
-  border-radius: 13px;
-  background: #27303d;
-  color: white;
+  border-radius: 9px;
+  background: linear-gradient(180deg, #3d4149, var(--btn-number));
+  color: var(--text-light);
   font-size: clamp(20px, 4vh, 25px);
-  font-weight: 800;
+  font-weight: 900;
+  box-shadow: 0 3px 0 #17191d, inset 0 1px 0 rgba(255,255,255,.15);
 }
 
 .mainpad .op {
-  background: #ff9700;
-  color: #050505;
+  background: linear-gradient(180deg, #dfcf5c, var(--btn-operator));
+  color: #111;
+}
+
+.mainpad .equals {
+  background: linear-gradient(180deg, #c7ee88, var(--btn-equals));
+  color: #111;
+  outline: 2px solid white;
+  outline-offset: -3px;
 }
 
 .mainpad .danger {
-  color: #ff5a5f;
+  background: linear-gradient(180deg, #b91515, var(--btn-clear));
+  color: white;
+}
+
+.mainpad button[data-action="back"] {
+  background: linear-gradient(180deg, #d62c24, var(--btn-delete));
+  color: white;
 }
 
 .mainpad .zero {
   grid-column: span 2;
-}
-
-.mainpad .equals {
-  outline: 2px solid white;
-  outline-offset: -3px;
 }
