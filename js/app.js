@@ -2,12 +2,17 @@ const exprEl=document.getElementById('expr'),histEl=document.getElementById('his
 let expr='0',angle='DEG',memory=0;
 function fitDisplay() {
   exprEl.style.fontSize = "42px";
+  exprEl.style.letterSpacing = "1px";
 
   let size = 42;
 
-  while (exprEl.scrollWidth > exprEl.clientWidth && size > 18) {
+  while (exprEl.scrollWidth > exprEl.clientWidth && size > 14) {
     size -= 1;
     exprEl.style.fontSize = size + "px";
+
+    if (size <= 24) {
+      exprEl.style.letterSpacing = "0px";
+    }
   }
 }
 function show() {
