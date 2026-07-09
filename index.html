@@ -1,259 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="mobile-web-app-capable" content="yes">
-<link rel="manifest" href="manifest.json">
-
-<meta name="theme-color" content="#d0d0d0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Calculadora">
-
-<title>Calculadora Científica Pro</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-html,body{
-  width:100%;
-  height:100%;
-  background:#dcdcdc;
-  overflow:hidden;
-}
-body{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:6px;
-}
-.calc{
-  width:96vw;
-  max-width:430px;
-  height:96vh;
-  max-height:760px;
-  background:#d0d0d0;
-  border:2px solid #333;
-  border-radius:24px;
-  padding:12px;
-  display:flex;
-  flex-direction:column;
-  box-shadow:inset 0 0 4px rgba(255,255,255,.8),0 2px 5px rgba(0,0,0,.5);
-}
-.topo{
-  display:flex;
-  justify-content:space-between;
-  color:#777;
-  font-size:14px;
-  padding:8px 28px;
-}
-.tela{
-    background:#6b7068;
-    color:#fff;
-    height:22vh;
-    min-height:140px;
-    max-height:180px;
-    border-radius:4px;
-    box-shadow:inset 0 0 6px #000;
-    padding:8px;
-    margin-bottom:8px;
-}
-.hist{
-    height:60px;
-    font-size:16px !important;
-    overflow-y:auto;
-    overflow-x:hidden;
-    white-space:pre-line;
-    font-weight:bold;
-    color:#ffffff;
-    padding-left:8px;
-    line-height:20px;
-}
-
-.res{
-    font-size:52px !important;
-    font-weight:bold;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:70px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));
-  gap:5px;
-  width:100%;
-  flex:1;
-}
-.num{
-  display:grid;
-  grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:6px;
-  margin-top:10px;
-}
-button{
-  width:100%;
-  min-width:0;
-  height:100%;
-  min-height:28px;
-  border-radius:7px;
-  border:1px solid #aaa;
-  color:#fff;
-  font-size:clamp(14px,4vw,20px);
-  font-weight:bold;
-  background:linear-gradient(#33006d,#18003d);
-  box-shadow:inset 0 0 0 2px #fff,0 1px 2px rgba(0,0,0,.5);
-  text-shadow:0 1px 1px rgba(0,0,0,.7);
-}
-.grid button,.grid .v{min-height:30px}
-.num button{min-height:38px}
-.uva{background:linear-gradient(#7b2cbf,#5a189a)!important}
-.black{background:#000}
-.deg{background:linear-gradient(#ff9c00,#d96f00)!important;color:#000;text-shadow:none}
-.rad{background:linear-gradient(#18b84a,#0a7f30)!important;color:#fff}
-.n{background:linear-gradient(#fff,#eee);color:#000;text-shadow:none}
-.op{background:linear-gradient(#ffe89a,#d6ad35);color:#000;text-shadow:none}
-.del{background:linear-gradient(#ff9c00,#d96f00);color:#000;text-shadow:none}
-.ac{background:linear-gradient(#ff2f55,#c90029)}
-.eq{background:linear-gradient(#12b8aa,#087f75);grid-column:span 2}
-.v{height:100%}
-@media (max-height:650px){
-  .calc{height:98vh;padding:8px}
-  .tela{min-height:90px;height:16vh}
-  .res{font-size:28px}
-  .topo{font-size:12px;padding:5px 25px}
-  .grid{gap:4px}
-  .num{gap:5px;margin-top:7px}
-  .grid button,.grid .v{min-height:25px}
-  .num button{min-height:32px}
-}
-@media (max-width:600px){
-
-  .hist{
-      font-size:36px !important;
-      height:80px;
-      line-height:80px;
-  }
-
-  .res{
-      font-size:62px !important;
-  }
-
-}
-
-/* AUMENTAR NÚMEROS DOS BOTÕES */
-
-.n{
-    font-size:30px !important;
-}
-
-.op{
-    font-size:30px !important;
-}
-
-.del, .ac{
-    font-size:28px !important;
-}
-
-.eq{
-    font-size:32px !important;
-} 
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Calculadora Científica Android PRO 6</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/display.css">
+  <link rel="stylesheet" href="css/keypad.css">
 </head>
 <body>
-<div class="calc">
-<div class="topo"><span id="modoTxt">θ→DEG</span><span>Cplx→Rect</span></div>
-<div class="tela"><div class="hist" id="hist">Pronto para calcular</div><div class="res" id="res">0</div></div>
+<main class="calculator" aria-label="Calculadora Científica">
+  <header class="topbar">
+    <strong>Calculadora Científica</strong>
+    <button class="toggle locked" type="button" aria-disabled="true">WOSvip®</button>
+  </header>
 
-<div class="grid">
-<button onclick="mr()">MR</button><button onclick="mp()">M+</button><button onclick="mm()">M-</button><button onclick="mc()">MC</button><button onclick="save()">Save</button><button onclick="clearAll()">AC</button>
-<button class="uva" onclick="add('^')">↑</button><button class="uva" onclick="add(',')">,</button><button id="degBtn" class="deg" onclick="toggleMode()">Deg</button><button class="uva" onclick="add('+')">a+bi</button><button class="uva" onclick="del()">←</button><button class="uva">→</button>
-<button class="uva" onclick="add('(')">(</button><button class="uva" onclick="add(')')">)</button><button class="uva">Re</button><button class="uva">Im</button><button class="uva" onclick="add('/')">/</button><button class="uva">()</button>
+  <section class="display" aria-live="polite">
+    <div id="history" class="history"></div>
+    <div id="expr" class="expr">0</div>
+  </section>
 
-<button onclick="func('sinh')">sinh</button><button onclick="func('cosh')">cosh</button><button onclick="func('tanh')">tanh</button><button onclick="func('asinh')">asinh</button><button onclick="func('acosh')">acosh</button><button onclick="func('atanh')">atanh</button>
-<button onclick="func('asin')">asin</button><button onclick="func('acos')">acos</button><button onclick="func('atan')">atan</button><button onclick="func('asec')">asec</button><button onclick="func('acsc')">acsc</button><button onclick="func('acot')">acot</button>
-<button onclick="func('sin')">sin</button><button onclick="func('cos')">cos</button><button onclick="func('tan')">tan</button><button onclick="func('sec')">sec</button><button onclick="func('csc')">csc</button><button onclick="func('cot')">cot</button>
+  <section id="scientific" class="scientific open always-open" aria-label="Teclado científico">
+    <button data-insert="sin(">sin</button><button data-insert="cos(">cos</button><button data-insert="tan(">tan</button><button data-insert="log(">log</button><button data-insert="ln(">ln</button>
+    <button data-insert="asin(">asin</button><button data-insert="acos(">acos</button><button data-insert="atan(">atan</button><button data-insert="√(">√</button><button data-insert="³√(">³√</button>
+    <button data-insert="π">π</button><button data-insert="e">e</button><button data-action="square">x²</button><button data-insert="^">xʸ</button><button data-action="reciprocal">1/x</button>
+    <button data-insert="(">(</button><button data-insert=")">)</button><button data-insert="!">x!</button><button data-insert="mod">mod</button><button id="angleBtn" data-action="angle">DEG</button>
+    <button data-insert="sinh(">sinh</button><button data-insert="cosh(">cosh</button><button data-insert="tanh(">tanh</button><button data-insert="log2(">log₂</button><button data-action="abs">|x|</button>
+    <button data-action="mc">MC</button><button data-action="mr">MR</button><button data-action="mplus">M+</button><button data-action="mminus">M−</button><button data-action="rand">Rand</button>
+  </section>
 
-<button class="black" onclick="add('log(')">log.</button><button class="black" onclick="add('ln(')">ln</button><div class="v"></div><div class="v"></div><div class="v"></div><button class="black" onclick="modulo()">|x|</button>
-<button class="black" onclick="add('i')">i</button><button class="black" onclick="add('e')">e</button><button class="black" onclick="add('π')">π</button><button class="black" onclick="add('^')">xⁿ</button><button class="black" onclick="add('!')">!</button><button class="black" onclick="add('exp(')">Exp</button>
-</div>
+  <section class="mainpad" aria-label="Teclado principal">
+    <button class="danger" data-action="clear">C</button><button data-action="back">⌫</button><button data-action="sign">±</button><button class="op" data-insert="÷">÷</button>
+    <button data-insert="7">7</button><button data-insert="8">8</button><button data-insert="9">9</button><button class="op" data-insert="×">×</button>
+    <button data-insert="4">4</button><button data-insert="5">5</button><button data-insert="6">6</button><button class="op" data-insert="-">−</button>
+    <button data-insert="1">1</button><button data-insert="2">2</button><button data-insert="3">3</button><button class="op" data-insert="+">+</button>
+    <button class="zero" data-insert="0">0</button><button data-insert=".">.</button><button class="op equals" data-action="equals">=</button>
+  </section>
 
-<div class="num">
-<button class="n" onclick="add('7')">7</button><button class="n" onclick="add('8')">8</button><button class="n" onclick="add('9')">9</button><button class="del" onclick="del()">DEL</button><button class="ac" onclick="clearAll()">AC</button>
-<button class="n" onclick="add('4')">4</button><button class="n" onclick="add('5')">5</button><button class="n" onclick="add('6')">6</button><button class="op" onclick="add('*')">×</button><button class="op" onclick="add('/')">÷</button>
-<button class="n" onclick="add('1')">1</button><button class="n" onclick="add('2')">2</button><button class="n" onclick="add('3')">3</button><button class="op" onclick="add('+')">+</button><button class="op" onclick="add('-')">−</button>
-<button class="n" onclick="add('0')">0</button><button class="n" onclick="add('.')">.</button><button class="n" onclick="inv()">±</button><button class="eq" onclick="calc()">=</button>
-</div>
-</div>
-
-<script>
-let exp="",mem=0,deg=true,h=[];
-const hist=document.getElementById("hist"),res=document.getElementById("res"),modoTxt=document.getElementById("modoTxt"),degBtn=document.getElementById("degBtn");
-
-function upd(){
-    hist.innerHTML =
-        '<span style="font-size:36px;font-weight:bold;color:white;">' +
-        (exp || "0") +
-        '</span>';
-}
-function add(v){exp+=v;upd()}
-function func(f){exp+=f+"(";upd()}
-function clearAll(){exp="";res.innerText="0";hist.innerText="Pronto para calcular"}
-function del(){exp=exp.slice(0,-1);upd()}
-function inv(){if(exp){exp="-("+exp+")";upd()}}
-function save(){mem=parseFloat(res.innerText)||0;res.innerText="Salvo"}
-function mr(){exp+=mem;upd()}
-function mp(){mem+=parseFloat(res.innerText)||0;res.innerText="M="+mem}
-function mm(){mem-=parseFloat(res.innerText)||0;res.innerText="M="+mem}
-function mc(){mem=0;res.innerText="Memória limpa"}
-function toggleMode(){deg=!deg;modoTxt.innerText=deg?"θ→DEG":"θ→RAD";degBtn.className=deg?"deg":"rad";degBtn.innerText=deg?"Deg":"Rad"}
-
-const rad=x=>deg?x*Math.PI/180:x;
-const dg=x=>deg?x*180/Math.PI:x;
-const sin=x=>Math.sin(rad(x)),cos=x=>Math.cos(rad(x)),tan=x=>Math.tan(rad(x));
-const asin=x=>dg(Math.asin(x)),acos=x=>dg(Math.acos(x)),atan=x=>dg(Math.atan(x));
-const sec=x=>1/cos(x),csc=x=>1/sin(x),cot=x=>1/tan(x);
-const asec=x=>acos(1/x),acsc=x=>asin(1/x),acot=x=>atan(1/x);
-const sinh=Math.sinh,cosh=Math.cosh,tanh=Math.tanh,asinh=Math.asinh,acosh=Math.acosh,atanh=Math.atanh;
-const log=Math.log10,ln=Math.log,expf=Math.exp;
-function modulo(){if(exp){exp="Math.abs("+exp+")";upd()}}
-function fat(n){n=Math.floor(n);let r=1;for(let i=2;i<=n;i++)r*=i;return r}
-
-function calc(){
- try{
-  let original = exp;
-
-  let c = exp
-    .replace(/π/g,"Math.PI")
-    .replace(/\be\b/g,"Math.E")
-    .replace(/\^/g,"**")
-    .replace(/exp\(/g,"expf(")
-    .replace(/(\d+)!/g,"fat($1)");
-
-  let r = Function("return " + c)();
-
-  if(isNaN(r) || !isFinite(r)){
-    res.innerText = "Erro";
-    return;
-  }
-
-  r = parseFloat(Number(r).toFixed(6));
-
-  res.innerText = r;
-
-  h.push(original + " = " + r);
-
-  if(h.length > 3){
-    h.shift();
-  }
-
-  hist.innerText = h.join("\n");
-
-  exp = String(r);
-
- }catch(e){
-  res.innerText = "Erro";
- }
-}
-</script>
+  <footer>Aprenda para evoluir — Wellington Oliveira</footer>
+</main>
+<script src="js/parser.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

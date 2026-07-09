@@ -1,30 +1,12 @@
-# 📅 Calendário WosVIP
+# Calculadora Android PRO 6 - Somente Científica
 
-Calendário responsivo desenvolvido em HTML, CSS e JavaScript.
+Versão com o teclado científico sempre ativo.
 
-## Recursos
+Alterações principais:
+- Removido o modo normal/retrátil.
+- Teclado científico sempre visível.
+- Teclado principal independente e sempre funcional.
+- Correção da constante `e`.
+- Layout ajustado para celular.
 
-- Destaque automático do dia atual.
-- Seleção de mês e ano.
-- Exibição do número da semana.
-- Feriados nacionais do Brasil.
-- Interface otimizada para smartphones.
-- Instalação como aplicativo (PWA).
-
-## Tecnologias utilizadas
-
-- HTML5
-- CSS3
-- JavaScript
-
-## Instalação
-
-Acesse:
-
-https://wosvip.github.io/wosvip_calculadora/
-
-ou instale diretamente no smartphone através da opção **Adicionar à tela inicial** do navegador.
-
----
-
-**Desenvolvido por: WosVIP®**
+Abra `index.html` no navegador.
