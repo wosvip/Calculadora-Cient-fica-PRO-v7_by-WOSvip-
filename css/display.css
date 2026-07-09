@@ -23,34 +23,16 @@
 }
 
 .expr {
-
-    grid-row: 3;
-
-    display: flex;
-
-    justify-content: flex-end;
-
-    align-items: flex-end;
-
-    padding-right: 4px;
-
-    font-family: "Consolas","Courier New",monospace;
-
-    font-size: 42px;
-
-    font-weight: 500;
-
-    letter-spacing: 1px;
-
-    color: #111;
-
-    overflow-x: auto;
-
-    overflow-y: hidden;
-
-    white-space: nowrap;
-
-    scrollbar-width: none;
+  grid-row: 3;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1;
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: right;
 }
 
 .expr::-webkit-scrollbar{
