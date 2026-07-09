@@ -1,17 +1,8 @@
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
-}
-
 body {
   min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #05080d;
 }
 
 .calculator {
@@ -19,10 +10,10 @@ body {
   height: 100dvh;
   max-height: 100dvh;
   display: grid;
-  grid-template-rows: 44px 70px auto 1fr 16px;
+  grid-template-rows: 44px 72px auto 1fr 16px;
   overflow: hidden;
-  background: #080c13;
-  border: 1px solid #263142;
+  background: var(--bg);
+  border: 3px solid #202228;
   border-radius: 18px;
 }
 
@@ -31,38 +22,28 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #151a24;
-  border-bottom: 1px solid #273142;
+  background: var(--topbar);
+  border-bottom: 2px solid #22252b;
 }
 
 .topbar strong {
+  color: white;
   font-size: 12px;
 }
 
 .toggle {
   border: none;
   padding: 8px 16px;
-  border-radius: 22px;
-  background: #252c3b;
+  border-radius: 18px;
+  background: #2f333a;
   color: white;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 12px;
 }
 
 footer {
-  font-size: 9px;
-  text-align: center;
   color: white;
+  font-size: 8px;
+  text-align: center;
   line-height: 16px;
-}
-
-@media (max-height: 760px) {
-  .calculator {
-    grid-template-rows: 42px 62px auto 1fr 12px;
-  }
-
-  footer {
-    font-size: 8px;
-    line-height: 12px;
-  }
 }
