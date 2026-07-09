@@ -8,37 +8,35 @@ button {
 .scientific {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 5px;
-  padding: 8px 12px;
+  gap: 4px;
+  padding: 6px 10px;
   background: #080c13;
-  flex: 0 0 auto;
 }
 
 .scientific button {
-  height: 30px;
-  border-radius: 9px;
+  height: clamp(24px, 3.4vh, 30px);
+  border-radius: 8px;
   background: #3a4355;
   color: white;
-  font-size: 12px;
+  font-size: clamp(10px, 1.7vh, 12px);
   font-weight: 800;
 }
 
 .mainpad {
-  flex: 1;
   min-height: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  gap: 8px;
-  padding: 8px 12px 6px;
+  gap: 7px;
+  padding: 6px 10px 4px;
 }
 
 .mainpad button {
   min-height: 0;
-  border-radius: 14px;
+  border-radius: 13px;
   background: #27303d;
   color: white;
-  font-size: 24px;
+  font-size: clamp(20px, 4vh, 25px);
   font-weight: 800;
 }
 
@@ -58,27 +56,4 @@ button {
 .mainpad .equals {
   outline: 2px solid white;
   outline-offset: -3px;
-}
-
-@media (max-height: 760px) {
-  .scientific {
-    gap: 4px;
-    padding: 6px 10px;
-  }
-
-  .scientific button {
-    height: 27px;
-    font-size: 11px;
-    border-radius: 8px;
-  }
-
-  .mainpad {
-    gap: 7px;
-    padding: 7px 10px 5px;
-  }
-
-  .mainpad button {
-    font-size: 22px;
-    border-radius: 13px;
-  }
 }
