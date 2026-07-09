@@ -39,17 +39,21 @@ button:active {
   min-height: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 7px;
-  padding: 7px 9px 4px;
+
+  /* Botões principais menores */
+  grid-template-rows: repeat(5, 42px);
+
+  gap: 5px;
+  padding: 5px 9px 4px;
 }
 
 .mainpad button {
   min-height: 0;
-  border-radius: 9px;
+  height: 42px;
+  border-radius: 8px;
   background: linear-gradient(180deg, #3d4149, var(--btn-number));
   color: var(--text-light);
-  font-size: clamp(20px, 4vh, 25px);
+  font-size: 21px;
   font-weight: 900;
   box-shadow: 0 3px 0 #17191d, inset 0 1px 0 rgba(255,255,255,.15);
 }
