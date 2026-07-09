@@ -39,3 +39,24 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.expr{
+    font-size:46px;
+    transition:font-size .15s;
+}
+
+.expr.small{
+    font-size:40px;
+}
+
+.expr.tiny{
+    font-size:34px;
+}
+
+.expr.micro{
+    font-size:28px;
+}
+
+.expr.nano{
+    font-size:22px;
+}
