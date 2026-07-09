@@ -1,7 +1,16 @@
 const exprEl=document.getElementById('expr'),histEl=document.getElementById('history'),angleBtn=document.getElementById('angleBtn');
 let expr='0',angle='DEG',memory=0;
 function fitDisplay(){exprEl.className='expr';const l=expr.length;if(l>9)exprEl.classList.add('small');if(l>15)exprEl.classList.add('tiny');if(l>23)exprEl.classList.add('micro');if(l>34)exprEl.classList.add('nano')}
-function show(){exprEl.textContent=expr;fitDisplay()}
+function show(){
+
+    exprEl.textContent = expr;
+
+    fitDisplay();
+
+    // mantém sempre o final visível
+    exprEl.scrollLeft = exprEl.scrollWidth;
+
+}
 function insert(v){if(expr==='0'||expr==='Erro')expr='';expr+=v;show();preview()}
 function preview(){try{if(!expr||/[+\-×÷^(]$/.test(expr))return;const r=calculateExpression(expr,angle);histEl.textContent=expr+' = '+r}catch(e){}}
 function equals(){try{const old=expr;const r=String(calculateExpression(expr,angle));expr=r;histEl.textContent=old+' =';show()}catch(e){histEl.textContent=expr+' = Erro';expr='Erro';show()}}
