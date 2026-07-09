@@ -13,12 +13,14 @@
   grid-template-rows: 18px 1fr 46px;
 }
 
-.history {
-  font-size: 10px;
-  color: var(--display-sub);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.history{
+
+    font-size:12px;
+
+    font-weight:600;
+
+    color:#294a78;
+
 }
 
 .expr {
