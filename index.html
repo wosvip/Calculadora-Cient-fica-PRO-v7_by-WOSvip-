@@ -1,47 +1,121 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Calculadora Científica Android PRO 6</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/display.css">
-  <link rel="stylesheet" href="css/keypad.css">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Calendário WosVIP com semanas ISO e feriados do Brasil.">
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icons/icone-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/icons/icone-192.png">
+  <link rel="stylesheet" href="./css/style.css?v=3.0.0">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Calendário WosVIP">
+
+  <title>Calendário WosVIP</title>
 </head>
+
 <body>
-<main class="calculator" aria-label="Calculadora Científica">
-  <header class="topbar">
-    <strong>Calculadora Científica</strong>
-    <button class="toggle locked" type="button" aria-disabled="true">WOSvip®</button>
-  </header>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-icon" src="./assets/icons/icone-192.png" alt="">
+        <div class="brand-text">
+          <h1>Calendário</h1>
+          <p id="dataAtualCabecalho">Carregando data...</p><span class="version-badge">v3.0</span>
+        </div>
+      </div>
 
-  <section class="display" aria-live="polite">
-    <div id="history" class="history"></div>
-    <div id="expr" class="expr">0</div>
-  </section>
+      <button id="btnHoje" class="today-button" type="button">Hoje</button>
+    </header>
 
-  <section id="scientific" class="scientific open always-open" aria-label="Teclado científico">
-    <button data-insert="sin(">sin</button><button data-insert="cos(">cos</button><button data-insert="tan(">tan</button><button data-insert="log(">log</button><button data-insert="ln(">ln</button>
-    <button data-insert="asin(">asin</button><button data-insert="acos(">acos</button><button data-insert="atan(">atan</button><button data-insert="√(">√</button><button data-insert="³√(">³√</button>
-    <button data-insert="π">π</button><button data-insert="e">e</button><button data-action="square">x²</button><button data-insert="^">xʸ</button><button data-action="reciprocal">1/x</button>
-    <button data-insert="(">(</button><button data-insert=")">)</button><button data-insert="!">x!</button><button data-insert="mod">mod</button><button id="angleBtn" data-action="angle">DEG</button>
-    <button data-insert="sinh(">sinh</button><button data-insert="cosh(">cosh</button><button data-insert="tanh(">tanh</button><button data-insert="log2(">log₂</button><button data-action="abs">|x|</button>
-    <button data-action="mc">MC</button><button data-action="mr">MR</button><button data-action="mplus">M+</button><button data-action="mminus">M−</button><button data-action="rand">Rand</button>
-  </section>
+    <section class="controls" aria-label="Seleção do calendário">
+      <button id="mesAnterior" class="nav-button" type="button" aria-label="Mês anterior">‹</button>
 
-  <section class="mainpad" aria-label="Teclado principal">
-    <button class="danger" data-action="clear">C</button><button data-action="back">⌫</button><button data-action="sign">±</button><button class="op" data-insert="÷">÷</button>
-    <button data-insert="7">7</button><button data-insert="8">8</button><button data-insert="9">9</button><button class="op" data-insert="×">×</button>
-    <button data-insert="4">4</button><button data-insert="5">5</button><button data-insert="6">6</button><button class="op" data-insert="-">−</button>
-    <button data-insert="1">1</button><button data-insert="2">2</button><button data-insert="3">3</button><button class="op" data-insert="+">+</button>
-    <button class="zero" data-insert="0">0</button><button data-insert=".">.</button><button class="op equals" data-action="equals">=</button>
-  </section>
+      <div class="field">
+        <label for="mes">Mês</label>
+        <select id="mes" aria-label="Selecionar mês"></select>
+      </div>
 
-  <footer>Aprenda para evoluir — Wellington Oliveira</footer>
-</main>
-<script src="js/parser.js?v=2"></script>
-<script src="js/app.js?v=2"></script>
+      <div class="field">
+        <label for="ano">Ano</label>
+        <select id="ano" aria-label="Selecionar ano"></select>
+      </div>
+
+      <button id="mesSeguinte" class="nav-button" type="button" aria-label="Próximo mês">›</button>
+    </section>
+
+    <section class="calendar-shell" aria-label="Calendário mensal">
+      <table>
+        <thead>
+          <tr>
+            <th class="week-col">Sem</th>
+            <th class="sunday">Dom</th>
+            <th>Seg</th>
+            <th>Ter</th>
+            <th>Qua</th>
+            <th>Qui</th>
+            <th>Sex</th>
+            <th class="saturday">Sáb</th>
+          </tr>
+        </thead>
+        <tbody id="calendario"></tbody>
+      </table>
+    </section>
+
+    <section id="dataSelecionada" class="selected-info" aria-live="polite">
+      <div class="selected-icon" aria-hidden="true">📅</div>
+      <div class="selected-content">
+        <span class="selected-label">Hoje</span>
+        <strong id="selectedTitle">Carregando...</strong>
+        <small id="selectedSubtitle">Nenhum evento cadastrado.</small>
+      </div>
+    </section>
+
+    <section class="month-summary" aria-label="Resumo do mês">
+      <div>
+        <span>Dias</span>
+        <strong id="resumoDias">—</strong>
+      </div>
+      <div>
+        <span>Semanas</span>
+        <strong id="resumoSemanas">—</strong>
+      </div>
+      <div>
+        <span>Feriados</span>
+        <strong id="resumoFeriados">—</strong>
+      </div>
+      <div>
+        <span>Hoje</span>
+        <strong id="resumoHoje">—</strong>
+      </div>
+    </section>
+
+    <div class="developer">
+      Desenvolvido por: <strong>WosVIP®</strong>
+    </div>
+
+    <section class="holidays-card">
+      <h2>Feriados do mês</h2>
+      <p class="holiday-subtitle">
+        Feriados nacionais, datas observadas e pontos facultativos.
+      </p>
+
+      <ul id="listaFeriados"></ul>
+
+      <div class="legend" aria-label="Legenda">
+        <span><i class="today-key"></i> Hoje</span>
+        <span><i class="holiday-key"></i> Feriado</span>
+        <span><i class="week-key"></i> Semana atual</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="./js/holidays.js?v=3.0.0"></script>
+  <script src="./js/calendar.js?v=3.0.0"></script>
+  <script src="./js/app.js?v=3.0.0"></script>
 </body>
 </html>
